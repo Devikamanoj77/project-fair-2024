@@ -1,0 +1,217 @@
+----------------------------------------------------------------------------------------------------------------
+                                        REACT : FRONT end Application Library
+----------------------------------------------------------------------------------------------------------------
+
+    Basic React 
+        - React App is a collection of different packages/Libraries
+        - ReactApp consist of different 'components', used to display contents in browser, in react app, all
+            the components are arranged in an tree structure.
+            Tree structure has a single parent node which is by default lnown as 'App component'.
+            components are generally reusable.
+            -Pure javascript functions to built components, it returns how to display contents in browser. Pure
+            function are capable of doing only one task with the help of its arguments. 
+            function without side effects
+            -Declarative approach 
+            -Virtual DOM : Light weight memory representation of real DOM.
+            -Babel Library : used to display contents in to browser
+            -JSX(JavaScrip XML) :  Js extension for writing html codes in javascript, used to display 
+                contets in browser
+                    -JSX element : ex: const heading = <h1>Heading1</h1>
+                    -Rules for using JSX
+                        -every jsx element must be inside a single tag. Parent tag can be  any container tag (div/section/article...)
+                         or react  fragments (<></>) tag without names is known as react fragments
+                        - In JSX we have to use camel case to write contents : ex:fontSize
+                        -Every JSX code must has a closing tag.If a tag has contents then: <startingTag>contents</closingTag>,
+                         if a tag does not has content: <startingTag></endingTag> , or we use self closing tag (<startingTag/>) as well
+                        -Instead of Attribute 'class' use 'className' in JSX
+                        -Instead of attribute 'for' use 'htmlfor' in JSX
+                        -In JSXwe can directly pass js code inside a curly braces. ex:{js code}
+    
+    2.React App creation
+        -CRA (using create-react-app command)
+        -Vite :tool for buillding web Application
+          - Installing Vite globally : npm i -g creative-vite
+          - React app creation using vite : npm create vite@latest reactAppName ---template react
+          - to run vite react projrct : use command
+    3.File & Folder structure of ReactApp using vite
+        -package.json file : npm configuration file for the project
+        -package-lock.json file :  used to hold versions of dependent packages of the project
+        -eslint.config.js file : js configuration file
+        -.gitignore file : used  to hold file & folder to be ignored while adding to gitignore
+        -node_modules folder : used to locally store dependent packages of project, we can generate node modules folder
+            with the help of command 'npm install'
+        -public folder : used to hold data that can be accessed by any part of the project.
+       
+        - index.html file :entry point of react application,react app will display in index.html file
+        - src folder : logic of react app is defined here
+        - main.jsx file : used to render(displaying in browser) react app in html element with id as 'root'
+        createRoot()-createRoot lets you create a root to display react component inside a browserDOM node
+        Css file : used to define style for all component in react app
+        app.jsx file: used to create react root component
+        assets folder : used to hold media files used in react project
+    4- Component : used to display in content in browser .To create component creat a js/jsx file with filename starts with capital letters.it is a part of user interface
+        create components in 2 types :
+        1- Functioal based component (stateless component) : use js pure function to build component,
+        function name must similar to its filename.function must return jsx code
+        2- Class based component (statefull component) : uses class to create component. class inherit react    
+            component class. render method in class used to return jsx code.
+            - to create state it has to call super method in constructot to get its parent features. state 
+                is an object, where we can store value as key-value pairs, to update the state use a predefined method setState() pass its argument as updated
+                value of state.
+    5.Data Sharing in React Components 
+        - Data can be shared from parent to child : use 'props' object
+    6.props : is a property of an component. It is an object used to transfer data from parent component to 
+        child component, parent data can be shared via child tag attribute.
+        To access parent child data in child we have to use props . Props used in the child component function
+        argument. props cannot be changed
+    7.Conditional Rendering :  Based on condition rendering jsx elemnts in browser, using if-else statements
+        (ternary operator ? :) if statements (&& operator)
+    8. List in React : use map array method. Set key attribute to duplicating JSX element in a list.
+    9. CSS styling in React : Different ways to apply css to JSX element
+        -Inline CSS : using style attribute to apply style to jsx element, style must be as js object
+            -syntax : style ={{cssProperty:value,...}}
+        -using External CSS : Define css style in an external css file. Link css file to component file
+            using import statements. We c annot import css file into a variable in component file.
+                import 'css file path'.
+        -using CSS Module file : file with extension as .module.css known as css 'module file', In this we have to
+            define style in class.  To use module css file we have to import it to component file.
+            -import variableName from 'module css file path', to apply style in componnet, variableName.className
+        -Material Ui
+        -react bootstrap: npm install react-bootstrap bootstrap
+                 Include proper bootstrap theme inorder to apply bootstrap properly in react project, use (bootswatch) for selecting theme
+                 Download bootstrap.min.css
+    10. Events Handling in React : syntax - event = {function call}
+            -binding function without arguments : event = {functionName}
+            -binding function without arguments : event ={()=>functionName(argument)} 
+            -binding function with arguments as events : event = {(event)=>functionName(event)}
+    
+    11. State in React : used to store data of a component. when state value changes component will re render  re conseliation - changing main dom comparing the virtual dom
+    12. HOOKS in React : Predefined methods in reactis known as hooks. Used to provide react component features to functional based component. 
+            All hooks name start with 'use' keyword. To use a hook in a functional component, it has to call the hook. 
+    - Rules to apply hooks in functional component
+            - import hook in component file
+            - to use hook in component call the hook in top level of component 
+            - hooks cannot be Conditional
+        - Based on react features different types of hooks are available.
+            - Built in hooks
+                - useState(initial value) hook: used to create state in functional component, this hook will return an array of 2 arguments. first argument will be the state, 
+                    second arg is use to update the state. State updating function name generally start with 'set'.
+                - useEffect(callbackFn,dependency) hook : used to apply side effects to the functional component. we can pass the side effects 
+                    in its first argument as call back function, we can also pass an optional dependency argument to decide when to apply side 
+                    effects in component.
+                        -dependency different values
+                            -no value: side effects will apply to the component all the time, which leads to an infinite loop
+                            -empty array : side effects will apply to the component only at the time of loading the component
+                                in DOM.
+                            -[state/props/variable_name] : side effects will apply to the component not only at the time of loading 
+                            of the component in DOM but also wheneverthe value of state/props/variable_name given in the dependency changes
+                - useRef() : is a React Hookthat lets you reference a value that's not needed for rendering
+                    InitialValue is optional in useRef hook, it will
+                - useParams() : hook will return dynamic values of route associated with a component
+                - useSelector() : hook used to select state from redux state
+                - useDispatch() :
+            - Custom Hooks : create a js file to define a specific function for a special task. export the function
+                from that file. function name must start with'use' keyword
+    13. Form Handling in React : there are two ways to mange data inside the form by a component
+        -Controlled components : are component which store data inside its own state
+        -Uncontrolled components : component who access data form data using its DOM elements reference
+        -preventDefault(): is automatically invoked whwn calculator attributr value is true , then this function prevent it effect by setting it value as false
+    14. Set up Path/url for component in React :  use package react-router-dom
+            install react-router-dom :    npm i react-router-dom
+            steps to set up path/url for component
+                1.render the entire react app inside 'BrowserRouter' component of react-router-dom library, provide this step inside main.jsx
+                2.Inorder to set up path for component, make sure each component must be inside Routes Component of react-router-dom Library,
+                    provide this step inside App.jsx file.
+                3.To set up path for component, use Route component of react-router-dom Library. Route Component has attributes like path and 
+                    element inorder setup route for component. All route component must be inside Routes component
+    15. Higher Order Componnets : are components whose  props argument will give another Component, ex: Route Component 
+        props drilling : passing props from one component to another (REDUX(js library) is used to eliminate props drilling)
+                Introducing a global store to store components
+    16. API Call in REACT :install axios
+    -Using axios  library : install axios -npm axios
+    -To make http request using axios :axios(config)
+        -config : is an predefined object with keys (method,url,data and headers)
+    -Http response using axios will always return object with predefined keys(data(server response), status)
+    -Create a service folder inside src of your react app
+    17.Data sharing between components in react 
+        -State Lifting : data sharing is using props.We will create a state in common parent of data to be shared 
+            components.share state updation function is given to 
+
+----------------------------------------------------------------------------------------------------------------
+                                JSON SERVER APPLICATION
+----------------------------------------------------------------------------------------------------------------
+
+    1.Create a server folder to store json file.
+    2.Create a package.json file(npm configuration file) file inside server folder: use command - npm init -y 
+    3.Install json-server in server folder to run json file for , use command to install json-server:
+        npm i json-server / to get json-server stable version use : npm i json-server@0.17.4
+    4.create json (db.json)file for storing project data
+    5.To run json file and available in browser port use command : npx json-server db.json
+
+
+----------------------------------------------------------------------------------------------------------------
+                                JSON SERVER DEPLOYMENT USING NODE JS
+----------------------------------------------------------------------------------------------------------------
+
+    1.Create an index.js file inside server folder
+    2.Update script key of package.json file with {"start": "node index.js"} 
+    3.Create .gitignore file, to add node_modules inside it
+    4.Defone steps to run db.json file using json-server in index.js
+        -import json-server
+        -create a server for media player app inorder to run our app
+        -create middleware to convert json to js (to understand the data)
+        -create a port for executing our application
+        -set up route / path db.json file so that the client  make the request
+        -use middleware, route inside the server
+        -To execute our app we have to use : node index.js in terminal, so that we can see the output in 
+            localhost 3000
+
+
+
+----------------------------------------------------------------------------------------------------------------
+                                REDUX - STATE MANAGEMENT TOOL
+----------------------------------------------------------------------------------------------------------------
+
+react-redux
+redux-toolkit
+    -store : configureStore()
+    -reducers: hold updated state
+    -action : logic to update state and its output automatically go to reducers
+
+    provider,useDispatch,useSelector
+
+    A JS library for predictable and maintainable global state management, To avoid props drilling
+    2. Redux consist of two packages 
+        -React-Redux : Official React Buildings for redux
+        -React-Toolkit : The official, opinionated, batteries-included toolset for efficient Redux development 
+    3. Important API used redux
+        -configureStore() : used to create store for redux. 
+        -steps to create redux store in react app
+            create a folder for redux logics inside src
+            Inside redux folder create a js file for creating store, call configureStore method and use reducers to
+                to hold the state to be shared /  stored in store.
+        -To provide store to our react app use 'Provider' component of react-redux library. Provider component has 'store'
+        attribute using it we can provide our store to react app. Inoreder to do that make provider component as the root
+        component of our react app. Give these steps in main.jsx file
+        
+         -createReducer() : used to create reducers where we can store updated State inside store
+         -createAction() : used to ceate action where we can define logic to updated state, output of action 
+         automatically return to its reducer.
+         -createSlice(): used to combine action and reducer in a single file.It return action and reducer, it accepts initial
+         slice, second argument is an object which contains data from dispatching action
+            steps to create slice for react app
+                -create js file for defining slice 
+                -create Slice method call where we have to define reducers as objects, its key act as action and its value 
+                    act as reducer function, it has minimum one argument which gives slice state
+         -createAsyncThunk(): used to make asynchronous call in the action in redux It ccept 2 arguments
+            first is action type string("slice-name/action-name"),2nd arg is a callback fn it can return promise.
+            It output can be 3 different types. pending state/fulfilled/reject state. "ExtraReducer" in slice can handle promise return action.
+            Because it has ad different cases to update slice state, based on promise output.
+     4. Important Hooks used redux
+            -useSelector(state =>state.reducer-name) : used to select state from store in a component
+            -useDispatch() : used to execute an action from an component. This hook will return a function that is capable of 
+            dispatching an action as its argument when we call the function.
+            -action without argument : dispatch-function(action-name())
+            -action with argument : dispatch-function(action-name(arg1,...)), to access argyment of action in Slice
+                reduce function it uses its second argument which is an object with 2 key payload and type.
+                payload will give the argument fropm action dispatched by a component
